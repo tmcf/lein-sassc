@@ -6,7 +6,7 @@ Leiningen plugin to compile SASS/SCSS files with [SassC](https://github.com/sass
 
 ```clj
 (defproject example "1.0.0"
-  :plugins [[apribase/lein-sassc "0.9.2"]])
+  :plugins [[lein-sassc "0.9.1"]])
 ```
 
 Make sure you have a [sassc](https://github.com/sass/sassc) command.
