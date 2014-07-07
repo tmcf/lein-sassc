@@ -22,9 +22,7 @@ The configuration for sassc is specified under the `:sassc` sections of your `pr
            :style        "compressed"          ;; "nested" or "compressed", default "nested"
            :import-path  "src/scss"}           ;; default "src/scss"
           {:src       "src/scss/page2.scss"
-           :output-to "dist/page2.css"}
-          {:src       "src/scss/page3.scss"
-           :output-to "dist/page3.css"}])
+           :output-to "dist/page2.css"}}])
 ```
 
 The above configuration run the following commands.
@@ -32,7 +30,6 @@ The above configuration run the following commands.
 ```sh
 $ sass -o dist/page1.css -t compressed -I src/scss src/scss/page1.scss
 $ sass -o dist/page2.css -t nested -I src/scss src/scss/page2.scss
-$ sass -o dist/page3.css -t nested -I src/scss src/scss/page3.scss
 ```
 
 ## Usage
