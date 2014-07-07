@@ -2,6 +2,9 @@
   "Compile SASS/SCSS source into a CSS file."
   (:require [clojure.java.shell :as shell]
             [me.raynes.fs :as fs]
+            [robert.hooke :as hooke]
+            [leiningen.compile :as lcompile]
+            [leiningen.clean :as lclean]
             [leiningen.help :as lhelp]
             [leiningen.core.main :as lmain]))
 
@@ -67,3 +70,19 @@
        (abort (str "Subtask" \" subtask \" "not found. "
                    (lhelp/subtask-help-for *ns* #'sassc))))))
 
+
+;; activate hooks. (first args) is project.
+
+(defn compile-hook [task & args]
+  (apply task args)
+  (once (first args)))
+
+
+(defn clean-hook [task & args]
+  (apply task args)
+  (clean (first args)))
+
+
+(defn activate []
+  (hooke/add-hook #'lcompile/compile #'compile-hook)
+  (hooke/add-hook #'lclean/clean #'clean-hook))
