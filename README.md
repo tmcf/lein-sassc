@@ -28,8 +28,8 @@ The configuration for sassc is specified under the `:sassc` sections of your `pr
 The above configuration run the following commands.
 
 ```sh
-$ sass -o dist/page1.css -t compressed -I src/scss src/scss/page1.scss
-$ sass -o dist/page2.css -t nested -I src/scss src/scss/page2.scss
+$ sassc -o dist/page1.css -t compressed -I src/scss src/scss/page1.scss
+$ sassc -o dist/page2.css -t nested -I src/scss src/scss/page2.scss
 ```
 
 ## Usage
