@@ -20,9 +20,10 @@
 (defn- run-sassc-command
   "Run sassc command, compile a SASS/SCSS file."
   [config]
-  (let [{:keys [src output-to style import-path]} config]
-    (println (str "sassc -o " output-to " -t " style " -I " import-path " " src))
-    (shell/sh "sassc" "-o" output-to "-t" style "-I" import-path src)))
+  (let [{:keys [src output-to style import-path]} config
+        command (str "sassc -t " style " -I " import-path " " src " " output-to)]
+    (println command)
+    (shell/sh command))
 
 
 (defn- compile-node [node]

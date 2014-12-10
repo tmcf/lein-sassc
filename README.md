@@ -6,7 +6,7 @@ Leiningen plugin to compile SASS/SCSS files with [SassC](https://github.com/sass
 
 ```clj
 (defproject example "1.0.0"
-  :plugins [[lein-sassc "0.9.1"]])
+  :plugins [[lein-sassc "0.10.0"]])
 ```
 
 Make sure you have a [sassc](https://github.com/sass/sassc) command.
@@ -28,8 +28,8 @@ The configuration for sassc is specified under the `:sassc` sections of your `pr
 The above configuration run the following commands.
 
 ```sh
-$ sassc -o dist/page1.css -t compressed -I src/scss src/scss/page1.scss
-$ sassc -o dist/page2.css -t nested -I src/scss src/scss/page2.scss
+$ sassc -t compressed -I src/scss src/scss/page1.scss dist/page1.css
+$ sassc -t nested -I src/scss src/scss/page2.scss dist/page2.css
 ```
 
 ## Usage
