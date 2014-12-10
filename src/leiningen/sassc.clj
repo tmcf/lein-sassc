@@ -1,6 +1,7 @@
 (ns leiningen.sassc
   "Compile SASS/SCSS source into a CSS file."
   (:require [clojure.java.shell :as shell]
+            [clojure.string :as string]
             [me.raynes.fs :as fs]
             [robert.hooke :as hooke]
             [leiningen.compile :as lcompile]
@@ -23,7 +24,7 @@
   (let [{:keys [src output-to style import-path]} config
         command (str "sassc -t " style " -I " import-path " " src " " output-to)]
     (println command)
-    (shell/sh command)))
+    (apply shell/sh (string/split command #"\s+"))))
 
 
 (defn- compile-node [node]
