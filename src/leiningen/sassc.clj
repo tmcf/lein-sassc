@@ -23,7 +23,7 @@
   (let [{:keys [src output-to style import-path]} config
         command (str "sassc -t " style " -I " import-path " " src " " output-to)]
     (println command)
-    (shell/sh command))
+    (shell/sh command)))
 
 
 (defn- compile-node [node]
