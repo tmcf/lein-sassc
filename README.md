@@ -32,6 +32,25 @@ $ sassc -t compressed -I src/scss src/scss/page1.scss dist/page1.css
 $ sassc -t nested -I src/scss src/scss/page2.scss dist/page2.css
 ```
 
+Multiple source paths may be specified by setting :import-path to a vector:
+
+```
+(defproject example "1.0.0"
+  :sassc [{:src          "src/scss/page1.scss"       ;; default "src/scss/main.scss"
+           :output-to    "dist/page1.css"            ;; default "target/sassc/main.css"
+           :style        "compressed"                ;; "nested" or "compressed", default "nested"
+           :import-path  ["src/scss" "other/scss"]}  ;; default "src/scss"
+          {:src       "src/scss/page2.scss"
+           :output-to "dist/page2.css"}}])
+```
+
+The above configuration results in the following commands:
+
+```sh
+$ sassc -t compressed -I src/scss -I other/scss src/scss/page1.scss dist/page1.css
+$ sassc -t nested -I src/scss -I other/scss src/scss/page2.scss dist/page2.css
+```
+
 ## Usage
 
 Compile your files once:
