@@ -17,12 +17,18 @@
                  :import-path "src/scss"}]
     (merge default node)))
 
+(defn parse-import-path
+  "Create the import path options for sassc, adding multiple options if the argument is a vector"
+  [import-path]
+  (let [import-path (if (vector? import-path) import-path [import-path])]
+    (apply str (interleave (repeat " -I ") import-path))))
 
 (defn- run-sassc-command
   "Run sassc command, compile a SASS/SCSS file."
   [config]
   (let [{:keys [src output-to style import-path]} config
-        command (str "sassc -t " style " -I " import-path " " src " " output-to)]
+        import-path (parse-import-path import-path)
+        command (str "sassc -t " style import-path " " src " " output-to)]
     (println command)
     (apply shell/sh (string/split command #"\s+"))))
 
@@ -64,13 +70,13 @@
   {:help-arglists '([once clean])
    :subtasks [#'once #'clean]}
   ([project]
-     (abort (lhelp/help-for "sassc")))
+   (abort (lhelp/help-for "sassc")))
   ([project subtask & args]
-     (case (keyword subtask)
-       :once  (once project)
-       :clean (clean project)
-       (abort (str "Subtask" \" subtask \" "not found. "
-                   (lhelp/subtask-help-for *ns* #'sassc))))))
+   (case (keyword subtask)
+     :once  (once project)
+     :clean (clean project)
+     (abort (str "Subtask" \" subtask \" "not found. "
+                 (lhelp/subtask-help-for *ns* #'sassc))))))
 
 
 ;; activate hooks. (first args) is project.
