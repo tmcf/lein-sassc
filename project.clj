@@ -1,4 +1,4 @@
-(defproject lein-sassc "0.10.5-SNAPSHOT"
+(defproject errigal751/lein-sassc "0.10.5-SNAPSHOT"
   :description "Leiningen plugin to compile SASS/SCSS files with SassC."
   :url "http://bitbucket.org/apribase/lein-sassc"
   :license {:name "Eclipse Public License"

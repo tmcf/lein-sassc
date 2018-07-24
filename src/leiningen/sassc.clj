@@ -14,7 +14,8 @@
   (let [default {:src         "src/scss/main.scss"
                  :output-to   "target/sassc/main.css"
                  :style       "nested"
-                 :import-path "src/scss"}]
+                 :import-path "src/scss"
+                 :executable "sassc"}]
     (merge default node)))
 
 (defn parse-import-path
@@ -26,9 +27,9 @@
 (defn- run-sassc-command
   "Run sassc command, compile a SASS/SCSS file."
   [config]
-  (let [{:keys [src output-to style import-path]} config
+  (let [{:keys [executable src output-to style import-path]} config
         import-path (parse-import-path import-path)
-        command (str "sassc -t " style import-path " " src " " output-to)]
+        command (str executable " -t " style import-path " " src " " output-to)]
     (println command)
     (apply shell/sh (string/split command #"\s+"))))
 

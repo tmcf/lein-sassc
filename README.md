@@ -2,11 +2,18 @@
 
 Leiningen plugin to compile SASS/SCSS files with [SassC](https://github.com/sass/sassc).
 
+*This version allows specifying sassc executable by using the ``:executable`` config key.* which I have
+seen in one existing version of this plugin, but not the one this was forked from.
+
+This was done as a work-around to a problem that only appeared when launching a repl using Cursive within IntelliJ.
+
+This version is not published to clojars so you must build and install it to maven local to use.
+
 ## Installation
 
 ```clj
 (defproject example "1.0.0"
-  :plugins [[lein-sassc "0.10.4"]])
+  :plugins [[errigal751/lein-sassc "0.10.5-SNAPSHOT"]])
 ```
 
 Make sure you have a [sassc](https://github.com/sass/sassc) command.
@@ -17,7 +24,8 @@ The configuration for sassc is specified under the `:sassc` sections of your `pr
 
 ```
 (defproject example "1.0.0"
-  :sassc [{:src          "src/scss/page1.scss" ;; default "src/scss/main.scss"
+  :sassc [{:executable "/some/path/sassc" ;; default "sassc"
+           :src          "src/scss/page1.scss" ;; default "src/scss/main.scss"
            :output-to    "dist/page1.css"      ;; default "target/sassc/main.css"
            :style        "compressed"          ;; "nested" or "compressed", default "nested"
            :import-path  "src/scss"}           ;; default "src/scss"
