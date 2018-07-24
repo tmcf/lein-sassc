@@ -22,9 +22,13 @@ Make sure you have a [sassc](https://github.com/sass/sassc) command.
 
 The configuration for sassc is specified under the `:sassc` sections of your `project.clj`.
 
+The *:executable* key is new to this version. Each sassc {} config block would need its own :executable to
+override the default value of ``sassc``.
+
+
 ```
 (defproject example "1.0.0"
-  :sassc [{:executable "/some/path/sassc" ;; default "sassc"
+  :sassc [{:executable   "/some/path/sassc"    ;; default "sassc"
            :src          "src/scss/page1.scss" ;; default "src/scss/main.scss"
            :output-to    "dist/page1.css"      ;; default "target/sassc/main.css"
            :style        "compressed"          ;; "nested" or "compressed", default "nested"
